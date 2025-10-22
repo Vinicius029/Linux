@@ -18,6 +18,15 @@
 
 - O processo init é responsável por levar o sistema nível de execução padrão.
 
+* Para acessar init.d
+```bash
+    cd /etc/init.d
+```
+* Todos os runlevels
+```bash
+    ls rc* | less
+```
+
 ## Runlevels:
 
 * 0 - Sistema Desligado
@@ -27,4 +36,14 @@
 * 4 - Não Usuado
 * 5 - Multiusuário completo com login gráfico (Red Hat)
 * 6 - Reinicialização do Sistema
+
+
+## Telinit:
+
+Comando `telinit` para mudar o runlevel em tempo de execução.
+
+* Desligar o sistema:
+```bash
+    telinit 0 
+```
 

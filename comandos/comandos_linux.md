@@ -1,3 +1,4 @@
+
 # Comandos Básicos do Terminal Linux
 
 ## 📁 Gerenciamento de Arquivos e Diretórios
@@ -26,6 +27,12 @@
 - `cd pasta1\ pasta2`  
   Entra em uma pasta com espaço no nome (usando `\` para escapar o espaço).
 
+- `cd ~`
+  Navegar para home diretamente
+
+- `cd /`
+  Navega para a raiz dos arquivos
+
 - `pwd`  
   Mostra o caminho (path) atual.
 
@@ -52,6 +59,12 @@
 
 - `rm -rf nome-da-pasta/`  
   Remove uma pasta com todos os seus conteúdos (**CUIDADO**).
+
+- `echo "hello world" > hello.js ; cat hello.js`
+  Usando dois comando encadeado, utilizando `;`, nesse caso o primeiro comando tem que ser executado com sucesso, para o segundo ser executado
+
+- `echo "hello world" > hello.js && cat hello.js`
+  Usando dois comando encadeado, utilizando `&&`, nesse caso diferente de `;`, mesmo o primeiro comando não executando, o segundo será executado
 
 ## 🔎 Busca de Arquivos
 
