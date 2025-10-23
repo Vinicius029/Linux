@@ -17,6 +17,25 @@ Mostra as primeiras linhas de um ou mais arquivos.
     head -n5 etc/passwd | cut -d: -f1
 ```
 
+# Tail
+
+Usado para ver as últimas linhas de um arquivo.
+
+## Comando:
+
+* Mostra as últimas 15 linhas do arquivos, utilizando `-n15`
+```bash
+    head -n15 /etc/passwd
+```
+* Mostra as últimas 20 caracteres, utilizando `-c20`
+```bash
+    head -c20 /etc/passwd
+```
+* Mostra as últimas 5 linhas do arquivos, utilizando `-n5`, e utlizando `cut` para filtrar somente o primeiro campo
+```bash
+    head -n5 /etc/passwd | cut -d: -f1
+```
+
 # Sort
 
 Organiza os dados de acordo com a necessidade dos usuários (de acordo com a primeira coluna de caracteres).
