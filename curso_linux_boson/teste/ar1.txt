@@ -1,0 +1,5 @@
+1878594 ar1.txt
+1878593 err.txt
+1878578 relatorio.txt
+1878592 teste03.txt
+1878591 teste.txt

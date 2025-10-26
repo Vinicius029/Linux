@@ -1,0 +1,2 @@
+ls: opção não reconhecida “--zz”
+Tente "ls --help" para mais informações.
