@@ -20,6 +20,9 @@ Comando que mostrar todos os históricos dos comandos executados
     # Repede último comando que começa com certa palavra:
     !ls
 
+    # Apaga o histórico di id 106:
+    history -d 106
+
     # CTRL+R habilita para pesquisar comando no histórico
 
     # Limpar da tela:
