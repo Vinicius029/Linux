@@ -2,6 +2,24 @@
 
 echo "======= Temporarizado de Estudos ======="
 
+DIR_PROGRESS="$HOME/Relatorio_Estudos"
+
+history(){
+    if [ -f "$DIR_PROGRESS/progresso_estudos.txt" ]; then
+        cat "$DIR_PROGRESS/progresso_estudos.txt"
+    else
+        echo "Nenhum histórico encontrado!"
+    fi
+}
+
+save_progress(){
+    if [ ! -d "$DIR_PROGRESS" ]; then
+        mkdir "$DIR_PROGRESS"
+    fi
+
+    echo "$(awk 'NR==1' /tmp/timer_log), Data: $(date +"%d/%m/%Y %H:%M")" >> "$DIR_PROGRESS/progresso_estudos.txt"
+}
+
 kill_process(){
     if [ "$(wc -c < /tmp/timer_pid)" -eq 0 ]; then
         echo "Sem processo para parar!"
@@ -13,7 +31,6 @@ kill_process(){
 }
 
 loop_time() {
-    # ps | grep test.sh | wc -l
     diff_acumulado=${1:-0}
     start=$(date +%s)
 
@@ -32,18 +49,21 @@ loop_time() {
 }
 
 start(){
+    if [ -s "/tmp/timer_pid" ]; then
+        echo "Já possui processo em andamento"
+        exit 1
+    fi
     loop_time 0 &
     pid=$! 
     echo $pid > /tmp/timer_pid
 }
 
 stop(){
-    sed -i '1,2s/Rodando/Parado/' /tmp/timer_log 
+    sed -i '2s/Rodando/Parado/' /tmp/timer_log 
     kill_process
 }
 
 Continue(){
-    start=$(sed -n '1p' /tmp/times)
     diff_acomulado=$(awk 'NR==3' /tmp/times)
     sed -i '2s/Parado/Rodando/' /tmp/timer_log
     loop_time "$diff_acomulado" &
@@ -60,6 +80,8 @@ finish(){
     sed -i "2s/$STATUS/finalizado/" /tmp/timer_log
     kill_process
     sed -n '1,2p' /tmp/timer_log
+    save_progress
+
     exit 0
 }
 
@@ -79,4 +101,14 @@ case $1 in
     finish)
         finish
         ;;
+    history)
+        history
+        ;;
+    *)
+        echo "Comando Inválido! Use os comandos abaixo:"
+        echo "start  -> Para inicializar o script"
+        echo "stop   -> Para parar o script"
+        echo "continue -> Para continuar o script"
+        echo "status  -> Para mostrar o status do script"
+        echo "finish -> Para finalizar o script"
 esac
